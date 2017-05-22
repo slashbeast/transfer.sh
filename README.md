@@ -2,7 +2,7 @@ Custom version of transfer.sh.
 Features:
 - add UUID Token
 - remove tracking
-- generic solution name
+- generic domain name
 
 
 Original Summary:
