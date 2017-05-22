@@ -306,7 +306,7 @@ type Metadata struct {
 func MetadataForRequest(contentType string, r *http.Request) Metadata {
 	metadata := Metadata{
 		ContentType:  contentType,
-		MaxDate:      time.Now().Add(time.Hour * 24 * 365 * 10),
+		MaxDate:      time.Now().Add(time.Hour * 24),
 		Downloads:    0,
 		MaxDownloads: 99999999,
 	}
@@ -385,7 +385,6 @@ func (s *Server) putHandler(w http.ResponseWriter, r *http.Request) {
 		contentType = mime.TypeByExtension(filepath.Ext(vars["filename"]))
 	}
 
-	//token := Encode(10000000 + int64(rand.Intn(1000000000)))
 	uid, err1 := uuid.NewV4()
         if err1 != nil {
                 fmt.Printf("Something gone wrong: %s", err1)
