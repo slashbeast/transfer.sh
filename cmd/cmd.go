@@ -7,7 +7,7 @@ import (
 
 	"strings"
 
-	"github.com/dutchcoders/transfer.sh/server"
+	"github.com/emmaanuel/transfer.sh/server"
 	"github.com/fatih/color"
 	"github.com/minio/cli"
 )
