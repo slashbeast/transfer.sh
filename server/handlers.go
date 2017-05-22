@@ -40,7 +40,6 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
-	"math/rand"
 	"mime"
 	"net/http"
 	"net/url"
@@ -58,6 +57,7 @@ import (
 	web "github.com/dutchcoders/transfer.sh-web"
 	"github.com/gorilla/mux"
 	"github.com/russross/blackfriday"
+	"github.com/nu7hatch/gouuid"
 )
 
 var (
@@ -202,8 +202,12 @@ func (s *Server) postHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	token := Encode(10000000 + int64(rand.Intn(1000000000)))
-
+	//token := Encode(10000000 + int64(rand.Intn(1000000000)))
+	uid, err := uuid.NewV4()
+	if err != nil {
+		fmt.Printf("Something gone wrong: %s", err)
+	}
+	token := uid.String()	
 	w.Header().Set("Content-Type", "text/plain")
 
 	for _, fheaders := range r.MultipartForm.File {
@@ -381,8 +385,12 @@ func (s *Server) putHandler(w http.ResponseWriter, r *http.Request) {
 		contentType = mime.TypeByExtension(filepath.Ext(vars["filename"]))
 	}
 
-	token := Encode(10000000 + int64(rand.Intn(1000000000)))
-
+	//token := Encode(10000000 + int64(rand.Intn(1000000000)))
+	uid, err1 := uuid.NewV4()
+        if err1 != nil {
+                fmt.Printf("Something gone wrong: %s", err1)
+        }
+        token := uid.String()   
 	metadata := MetadataForRequest(contentType, r)
 
 	buffer := &bytes.Buffer{}
