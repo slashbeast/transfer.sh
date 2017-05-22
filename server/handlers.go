@@ -175,12 +175,12 @@ func (s *Server) viewHandler(w http.ResponseWriter, r *http.Request) {
 	// vars := mux.Vars(r)
 
 	if acceptsHTML(r.Header) {
-		if err := htmlTemplates.ExecuteTemplate(w, "index.html", nil); err != nil {
+		if err := htmlTemplates.ExecuteTemplate(w, "index.html", r.Host); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 	} else {
-		if err := textTemplates.ExecuteTemplate(w, "index.txt", nil); err != nil {
+		if err := textTemplates.ExecuteTemplate(w, "index.txt", r.Host); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
