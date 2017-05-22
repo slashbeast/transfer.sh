@@ -762,9 +762,6 @@ func (s *Server) RedirectHandler(h http.Handler) http.HandlerFunc {
 // Create a log handler for every request it receives.
 func LoveHandler(h http.Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("x-made-with", "<3 by DutchCoders")
-		w.Header().Set("x-served-by", "Proudly served by DutchCoders")
-		w.Header().Set("Server", "Transfer.sh HTTP Server 1.0")
 		h.ServeHTTP(w, r)
 	}
 }
