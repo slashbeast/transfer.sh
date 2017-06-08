@@ -1,0 +1,18 @@
+version: '2'
+services:
+  go:
+    image:  emmaanuel/transfer.sh:latest
+    restart: always
+    ports:
+      - 8080
+    labels:
+      - service.name=transfer
+
+    volumes:
+      - file-repo:/tmp
+
+volumes:
+  file-repo:
+    driver: flocker
+    driver_opts:
+      size: "50GiB"
