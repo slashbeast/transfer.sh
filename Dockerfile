@@ -7,6 +7,6 @@ ADD . /go/src/github.com/emmaanuel/transfer.sh
 # build & install server
 RUN go build -o /go/bin/transfersh github.com/emmaanuel/transfer.sh
 
-ENTRYPOINT ["/go/bin/transfersh", "--listener", ":8080", "--provider", "local"]  
+CMD ["/go/bin/transfersh", "--listener", ":8080", "--provider", "local", "--basedir", "/tmp"]  
 
-EXPOSE 8080 8080
+EXPOSE 8080

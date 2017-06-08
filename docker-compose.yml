@@ -1,12 +1,13 @@
 version: '2'
 services:
-  go:
+  transfer:
     image:  emmaanuel/transfer.sh:latest
     restart: always
     ports:
       - 8080
     labels:
-      - service.name=transfer
+     - service.name=transfer
+     - service.version=1 
 
     volumes:
       - file-repo:/tmp
